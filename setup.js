@@ -32,11 +32,14 @@ const settings = new Enmap({
     );
     await settings.set('default', defaultSettings);
 
-    const TOKEN = reader.question('Enter your discord API token: ');
-    const PTERO_TOKEN = reader.question('Enter your Pterodactyl API token: ');
-    const PTERO_HOST = reader.question(
+    console.log('Enter your discord API token: ');
+    const TOKEN = reader.question('');
+    console.log('Enter your Pterodactyl API token: ');
+    const PTERO_TOKEN = reader.question('');
+    console.log(
         'Enter your Pterodactyl HOST address (https://panel.example.com): '
     );
+    const PTERO_HOST = reader.question('');
 
     baseConfig = baseConfig.replace('TOKEN', `${TOKEN}`);
     baseConfig = baseConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
