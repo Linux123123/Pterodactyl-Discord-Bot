@@ -34,7 +34,8 @@
     "enmap": "^5.8.2",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

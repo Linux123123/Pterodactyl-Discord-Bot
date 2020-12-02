@@ -1,6 +1,6 @@
 const Enmap = require('enmap');
 const fs = require('fs');
-const prompt = require('prompt-sync')({ sigint: true });
+const reader = require('readline-sync');
 
 let baseConfig = fs.readFileSync('./config.js.example', 'utf8');
 
@@ -32,9 +32,9 @@ const settings = new Enmap({
     );
     await settings.set('default', defaultSettings);
 
-    const TOKEN = prompt('Enter your discord API token: ');
-    const PTERO_TOKEN = prompt('Enter your Pterodactyl API token: ');
-    const PTERO_HOST = prompt(
+    const TOKEN = reader.question('Enter your discord API token: ');
+    const PTERO_TOKEN = reader.question('Enter your Pterodactyl API token: ');
+    const PTERO_HOST = reader.question(
         'Enter your Pterodactyl HOST address (https://panel.example.com): '
     );
 
