@@ -20,10 +20,10 @@ const settings = new Enmap({
 });
 
 (async function () {
-    // if (fs.existsSync('./config.js')) {
-    //     console.log('Already been set up!');
-    //     process.exit(0);
-    // }
+    if (fs.existsSync('./config.js')) {
+        console.log('Already been set up!');
+        process.exit(0);
+    }
     console.log('Setting Up Configuration...');
     await settings.defer;
 
