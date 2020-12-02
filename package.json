@@ -4,6 +4,7 @@
   "description": "Discord Pterodactyl Bot",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node setup.js",
     "test": "./node_modules/nodemon/bin/nodemon.js",
     "start": "node index.js"
   },

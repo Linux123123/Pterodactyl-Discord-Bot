@@ -1,5 +1,3 @@
-// "postinstall": "node setup.js",
-
 const Enmap = require('enmap');
 const fs = require('fs');
 const prompt = require('prompt-sync')({ sigint: true });
