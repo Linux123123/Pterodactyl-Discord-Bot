@@ -55,9 +55,9 @@ const init = async () => {
         client.config.pteroToken,
         (loggedIn, msg) => {
             if (loggedIn) {
-                client.logger.log('Pterodactyl has logged in!');
+                client.logger.ready('Pterodactyl has logged in!');
             } else {
-                client.logger.log(msg, 'error');
+                client.logger.error(msg);
             }
         }
     );
