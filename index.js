@@ -57,7 +57,7 @@ const init = async () => {
             if (loggedIn) {
                 client.logger.ready('Pterodactyl has logged in!');
             } else {
-                client.logger.error(msg);
+                client.logger.log(msg, 'ready');
             }
         }
     );
