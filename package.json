@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Linux123123/Ptero-Discord-Bot.git"
+    "url": "git+https://github.com/Linux123123/Pterodactyl-Discord-Bot.git"
   },
   "keywords": [
     "Discord",
@@ -23,9 +23,9 @@
   "author": "Linux123123",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Linux123123/Ptero-Discord-Bot/issues"
+    "url": "https://github.com/Linux123123/Pterodactyl-Discord-Bot/issues"
   },
-  "homepage": "https://github.com/Linux123123/Ptero-Discord-Bot#readme",
+  "homepage": "https://github.com/Linux123123/Pterodactyl-Discord-Bot#readme",
   "dependencies": {
     "@linux123123/jspteroapi": "^1.3.4",
     "better-sqlite3": "^7.1.1",
