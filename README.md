@@ -7,6 +7,12 @@
 
 <h3>A simple pterodactyl discord bot using my own API library, that has a permission system.</h3>
 
+# Requirements
+
+1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
+2. Node.js v12.0.0 or newer
+3. NPM installed
+
 # To install
 
 <h5>Install from the command line:</h5>
@@ -43,4 +49,4 @@ I am not responsible for any damages that you cause to your servers/nodes by usi
 Remember: This bot can potentially be dangerous with the ability to Delete Servers/Nodes at an instant!
 
 # Contributors
-Created and maintained by Linux123123
+Created and maintained by [Linux123123](https://github.com/linux123123)
