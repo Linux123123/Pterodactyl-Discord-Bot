@@ -9,7 +9,8 @@
 
 # Requirements
 
-1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**
+1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**<br>
+1.1 You need to have **Privileged Gateway Intents** enabled. (both member and presence)
 2. Node.js v12.0.0 or newer
 3. NPM installed
 
