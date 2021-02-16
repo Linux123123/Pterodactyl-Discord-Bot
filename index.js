@@ -5,7 +5,7 @@ const readdir = promisify(require('fs').readdir);
 const Enmap = require('enmap'); // Load enmap
 const config = require('./config.js'); // Load config
 
-const app = ptero.Application; // Use pterodactyl application API
+const app = new ptero.Application(config.pteroHost, config.pteroToken);
 
 const client = new Discord.Client({
     ws: {
@@ -49,19 +49,6 @@ const init = async () => {
         const thisLevel = client.config.permLevels[i];
         client.levelCache[thisLevel.name] = thisLevel.level;
     }
-
-    app.login(
-        client.config.pteroHost,
-        client.config.pteroToken,
-        (loggedIn, msg) => {
-            if (loggedIn) {
-                client.logger.log('Pterodactyl has logged in!', 'ready');
-            } else {
-                client.logger.error(msg);
-            }
-        }
-    );
-
     // Login to API
     client.login(client.config.token);
 };
