@@ -12,6 +12,7 @@ const settings = new Enmap({
 });
 
 (async function () {
+    fs.mkdir(`${__dirname}/config`, { recursive: true }, (e) => console.log(e));
     if (fs.existsSync(`${__dirname}/config/config.js`)) {
         process.exit(0);
     }
@@ -40,4 +41,5 @@ const settings = new Enmap({
     console.log('REMEMBER TO NEVER SHARE YOUR TOKEN WITH ANYONE!');
     console.log('Configuration has been written, enjoy!');
     await settings.close();
+    process.exit(0);
 })();
