@@ -15,15 +15,15 @@ if (config.token === 'TOKEN') {
     baseSrcConfig = baseSrcConfig.replace('TOKEN', `${TOKEN}`);
 }
 if (config.pteroHost === 'PTERO_HOST') {
-    console.log('Enter your pterodactyl API token: ');
+    console.log(
+        'Enter your pterodactyl host url (https://panel.example.com): ',
+    );
     const PTERO_HOST = reader.question();
     baseConfig = baseConfig.replace('PTERO_HOST', `${PTERO_HOST}`);
     baseSrcConfig = baseSrcConfig.replace('PTERO_HOST', `${PTERO_HOST}`);
 }
 if (config.pteroToken === 'PTERO_TOKEN') {
-    console.log(
-        'Enter your pterodactyl host url (https://panel.example.com): ',
-    );
+    console.log('Enter your pterodactyl API token: ');
     const PTERO_TOKEN = reader.question();
     baseConfig = baseConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
     baseSrcConfig = baseSrcConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
