@@ -9,7 +9,7 @@ export const config: Config = {
     // Pterodactyl api token
     pteroToken: 'PTERO_TOKEN',
     // Pterodactyl HOST address
-    pteroHost: 'PTERO_TOKEN',
+    pteroHost: 'PTERO_HOST',
     // PERMISSION LEVEL DEFINITIONS.
     permLevels: [
         // This is the lowest permisison level, this is for non-roled users.

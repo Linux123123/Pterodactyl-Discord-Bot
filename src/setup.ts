@@ -22,7 +22,7 @@ if (config.pteroHost === 'PTERO_HOST') {
 }
 if (config.pteroToken === 'PTERO_TOKEN') {
     console.log(
-        'Enter your pterodactyl gost url (https://panel.example.com): ',
+        'Enter your pterodactyl host url (https://panel.example.com): ',
     );
     const PTERO_TOKEN = reader.question();
     baseConfig = baseConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
