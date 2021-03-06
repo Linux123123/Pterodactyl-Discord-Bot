@@ -10,7 +10,7 @@
 # Requirements
 
 1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**<br>
-2. Node.js v14.0.0 or newers
+2. Node.js v14.0.0 or newer
 
 # Pterodactyl panel
 
@@ -41,9 +41,9 @@ There are 10 permission levels. They are defined in `config.js`
 |               |                      | 5     |                |
 |               |                      | 6     |                |
 |               |                      | 7     |                |
-| Bot Support   | Bot support          | 8     | :red_circle:   |
-| Bot Admin     | Bot admins           | 9     | :red_circle:   |
-| Bot Owner     | Linux123123          | 10    | :red_circle:   |
+|               |                      | 8     |                |
+|               |                      | 9     |                |
+| Bot Creator   | Linux123123          | 10    | :red_circle:   |
 
 The rows without any information are left to change if you want to add more roles.
 
