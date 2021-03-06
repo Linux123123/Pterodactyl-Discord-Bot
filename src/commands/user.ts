@@ -1,4 +1,3 @@
-import { JSPteroAPIError } from '@linux123123/jspteroapi';
 import { RunFunction } from '../interfaces/Command';
 
 export const run: RunFunction = async (client, message, args) => {
@@ -13,54 +12,41 @@ export const run: RunFunction = async (client, message, args) => {
             servers += `${i + 1}. ${srv.attributes.name}\n`;
         });
         message.channel.send(
-            client.embed({
-                title: `User: ${user.username}`,
-                description: `${user.first_name} ${user.last_name}`,
-                fields: [
-                    {
-                        name: 'User ID',
-                        value: user.id,
-                        inline: true,
-                    },
-                    {
-                        name: 'EMAIL',
-                        value: user.email,
-                        inline: true,
-                    },
-                    {
-                        name: 'ADMIN',
-                        value: user.root_admin,
-                        inline: true,
-                    },
-                    {
-                        name: 'Servers:',
-                        value: servers,
-                    },
-                ],
-                color: message.settings.embedColor,
-                timestamp: new Date(),
-            }),
+            client.embed(
+                {
+                    title: `User: ${user.username}`,
+                    description: `${user.first_name} ${user.last_name}`,
+                    fields: [
+                        {
+                            name: 'User ID',
+                            value: user.id,
+                            inline: true,
+                        },
+                        {
+                            name: 'EMAIL',
+                            value: user.email,
+                            inline: true,
+                        },
+                        {
+                            name: 'ADMIN',
+                            value: user.root_admin,
+                            inline: true,
+                        },
+                        {
+                            name: 'Servers:',
+                            value: servers,
+                        },
+                    ],
+                },
+                message,
+            ),
         );
     } catch (e) {
-        if (e.ERRORS) {
-            const err: JSPteroAPIError = e;
-            client.logger(JSON.stringify(err), 'error');
-            message.reply(
-                `There was an error: ${err.ERRORS.join(' ').replaceAll(
-                    'resource',
-                    'user',
-                )}`,
-            );
-            return;
-        }
-        client.logger(JSON.stringify(e), 'error');
-        message.reply('There was an error while trying to send the message!');
-        return;
+        return message.reply(client.functions.handleCmdError(client, e));
     }
 };
-export const name = 'user';
-
 export const conf = {
+    name: 'user',
     aliases: ['usr'],
     permLevel: 'Administrator',
 };

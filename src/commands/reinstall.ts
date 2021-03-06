@@ -1,4 +1,3 @@
-import { JSPteroAPIError } from '@linux123123/jspteroapi';
 import { RunFunction } from '../interfaces/Command';
 
 export const run: RunFunction = async (client, message, args) => {
@@ -16,25 +15,11 @@ export const run: RunFunction = async (client, message, args) => {
         );
         msg.delete({ timeout: 3000 });
     } catch (e) {
-        if (e.ERRORS) {
-            const err: JSPteroAPIError = e;
-            client.logger(JSON.stringify(err), 'error');
-            message.reply(
-                `There was an error: ${err.ERRORS.join(' ').replaceAll(
-                    'resource',
-                    'server',
-                )}`,
-            );
-            return;
-        }
-        client.logger(JSON.stringify(e), 'error');
-        message.reply('There was an error while trying to send the message!');
-        return;
+        return message.reply(client.functions.handleCmdError(client, e));
     }
 };
-export const name = 'reinstall';
-
 export const conf = {
+    name: 'reinstall',
     aliases: [''],
     permLevel: 'Administrator',
 };

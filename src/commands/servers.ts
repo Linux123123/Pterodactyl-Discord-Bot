@@ -1,4 +1,3 @@
-import { JSPteroAPIError } from '@linux123123/jspteroapi';
 import { Server } from '@linux123123/jspteroapi/dist/application/interfaces/Server';
 import { CollectorFilter, EmbedField, EmbedFieldData } from 'discord.js';
 import { RunFunction } from '../interfaces/Command';
@@ -78,13 +77,14 @@ export const run: RunFunction = async (client, message) => {
             egg: true,
             databases: true,
         });
-        const embed = client.embed({
-            title: servers[0].attributes.name,
-            fields: makeFields(0, servers),
-            footer: { text: `Page 1 of ${servers.length}` },
-            color: message.settings.embedColor,
-            timestamp: new Date(),
-        });
+        const embed = client.embed(
+            {
+                title: servers[0].attributes.name,
+                fields: makeFields(0, servers),
+                footer: { text: `Page 1 of ${servers.length}` },
+            },
+            message,
+        );
         const msg = await message.channel.send(embed);
         await msg.react('⬅');
         await msg.react('➡');
@@ -124,25 +124,11 @@ export const run: RunFunction = async (client, message) => {
             r.users.remove(r.users.cache.find((u) => u === message.author));
         });
     } catch (e) {
-        if (e.ERRORS) {
-            const err: JSPteroAPIError = e;
-            client.logger(JSON.stringify(err), 'error');
-            message.reply(
-                `There was an error: ${err.ERRORS.join(' ').replaceAll(
-                    'resource',
-                    'servers',
-                )}`,
-            );
-            return;
-        }
-        client.logger(JSON.stringify(e), 'error');
-        message.reply('There was an error while trying to send the message!');
-        return;
+        return message.reply(client.functions.handleCmdError(client, e));
     }
 };
-export const name = 'servers';
-
 export const conf = {
+    name: 'servers',
     aliases: [''],
     permLevel: 'Administrator',
 };

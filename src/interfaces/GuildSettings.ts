@@ -1,8 +1,7 @@
-export default interface GuildSettings {
-    [prefix: string]: string;
-    modLogChannel: string;
-    modRole: string;
+export interface GuildSettings {
+    prefix: string;
     adminRole: string;
-    systemNotice: string;
+    modRole: string;
     embedColor: string;
+    [key: string]: string;
 }

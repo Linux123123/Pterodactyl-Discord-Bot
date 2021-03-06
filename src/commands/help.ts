@@ -1,13 +1,13 @@
 import { EmbedFieldData } from 'discord.js';
-import Bot from '../client/client';
-import Command, { RunFunction } from '../interfaces/Command';
+import { RunFunction } from '../interfaces/Command';
 
-export const run: RunFunction = async (client: Bot, message, args, level) => {
+export const run: RunFunction = async (client, message, args) => {
     // If no specific command is called, show all filtered commands.
     if (!args[0]) {
         // Filter all commands by which are available for the user's level, using the <Collection>.filter() method.
         const myCommands = client.commands.filter(
-            (cmd) => client.levelCache[cmd.conf.permLevel] <= level,
+            (cmd) =>
+                client.levelCache[cmd.conf.permLevel] <= message.author.level,
         );
 
         let currentCategory = '';
@@ -18,7 +18,8 @@ export const run: RunFunction = async (client: Bot, message, args, level) => {
             .sort((p, c) =>
                 p.help.category > c.help.category
                     ? 1
-                    : p.name > c.name && p.help.category === c.help.category
+                    : p.conf.name > c.conf.name &&
+                      p.help.category === c.help.category
                     ? 1
                     : -1,
             );
@@ -31,49 +32,58 @@ export const run: RunFunction = async (client: Bot, message, args, level) => {
             }
             fields[
                 fieldsNum
-            ].value += `${message.settings.prefix}${c.name} - ${c.help.description}\n`;
+            ].value += `${message.settings.prefix}${c.conf.name} - ${c.help.description}\n`;
         });
 
         message.channel.send(
-            client.embed({
-                title: 'Command list',
-                color: message.settings.embedColor,
-                description: `**Use ${message.settings.prefix}help <commandname> for details**`,
-                fields: fields,
-                timestamp: new Date(),
-            }),
+            client.embed(
+                {
+                    title: 'Command list',
+                    description: `**Use ${message.settings.prefix}help <commandname> for details**`,
+                    fields: fields,
+                },
+                message,
+            ),
         );
     } else {
         // Show individual command's help.
         const cmd = args[0];
         if (client.commands.has(cmd)) {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            const command: Command = client.commands.get(cmd)!;
-            if (level < client.levelCache[command.conf.permLevel]) return;
+            const command = client.commands.get(cmd);
+            if (!command) return;
+            if (
+                message.author.level < client.levelCache[command.conf.permLevel]
+            )
+                return;
             message.channel.send(
-                client.embed({
-                    title: 'Command list',
-                    color: message.settings.embedColor,
-                    fields: [
-                        {
-                            name: 'Description:',
-                            value: command.help.description,
-                        },
-                        { name: 'Usage:', value: command.help.usage },
-                        {
-                            name: 'Aliases:',
-                            value: command.conf.aliases.join(', '),
-                        },
-                    ],
-                    timestamp: new Date(),
-                }),
+                client.embed(
+                    {
+                        title: 'Command',
+                        fields: [
+                            {
+                                name: 'Description:',
+                                value: command.help.description,
+                            },
+                            {
+                                name: 'Usage:',
+                                value:
+                                    message.settings.prefix +
+                                    command.help.usage,
+                            },
+                            {
+                                name: 'Aliases:',
+                                value: command.conf.aliases.join(', '),
+                            },
+                        ],
+                    },
+                    message,
+                ),
             );
         }
     }
 };
-export const name = 'help';
-
 export const conf = {
+    name: 'help',
     aliases: ['h', 'halp'],
     permLevel: 'User',
 };

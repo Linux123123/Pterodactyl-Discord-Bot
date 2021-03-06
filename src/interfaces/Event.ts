@@ -1,11 +1,9 @@
-import Bot from '../client/client';
-import { EventEmitter } from 'events';
+import { Bot } from '../classes/Client';
+
 export interface RunFunction {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (client: Bot, ...params: any[]): void;
 }
-export default interface Event {
-    name: string;
+export interface Event {
     run: RunFunction;
-    emitter?: EventEmitter;
 }

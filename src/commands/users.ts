@@ -1,4 +1,3 @@
-import { JSPteroAPIError } from '@linux123123/jspteroapi';
 import { User } from '@linux123123/jspteroapi/dist/application/interfaces/User';
 import { CollectorFilter, EmbedField, EmbedFieldData } from 'discord.js';
 import { RunFunction } from '../interfaces/Command';
@@ -36,14 +35,15 @@ export const run: RunFunction = async (client, message) => {
         const users = await client.app.getAllUsers({
             servers: true,
         });
-        const embed = client.embed({
-            title: users[0].attributes.username,
-            description: `${users[0].attributes.first_name} ${users[0].attributes.last_name}`,
-            fields: makeFields(0, users),
-            footer: { text: `Page 1 of ${users.length}` },
-            color: message.settings.embedColor,
-            timestamp: new Date(),
-        });
+        const embed = client.embed(
+            {
+                title: users[0].attributes.username,
+                description: `${users[0].attributes.first_name} ${users[0].attributes.last_name}`,
+                fields: makeFields(0, users),
+                footer: { text: `Page 1 of ${users.length}` },
+            },
+            message,
+        );
         const msg = await message.channel.send(embed);
         await msg.react('⬅');
         await msg.react('➡');
@@ -85,25 +85,11 @@ export const run: RunFunction = async (client, message) => {
             r.users.remove(r.users.cache.find((u) => u === message.author));
         });
     } catch (e) {
-        if (e.ERRORS) {
-            const err: JSPteroAPIError = e;
-            client.logger(JSON.stringify(err), 'error');
-            message.reply(
-                `There was an error: ${err.ERRORS.join(' ').replaceAll(
-                    'resource',
-                    'users',
-                )}`,
-            );
-            return;
-        }
-        client.logger(JSON.stringify(e), 'error');
-        message.reply('There was an error while trying to send the message!');
-        return;
+        return message.reply(client.functions.handleCmdError(client, e));
     }
 };
-export const name = 'users';
-
 export const conf = {
+    name: 'users',
     aliases: [''],
     permLevel: 'Administrator',
 };

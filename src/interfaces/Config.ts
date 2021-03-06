@@ -1,7 +1,7 @@
-import { Message } from '../message/Message';
+import { Message } from '../classes/Message';
 
 export interface permCheck {
-    (message: Message): boolean | undefined;
+    (message: Message): boolean;
 }
 
 export interface permObject {
@@ -10,10 +10,8 @@ export interface permObject {
     check: permCheck;
 }
 
-export default interface Config {
+export interface Config {
     ownerID: string;
-    admins: string[];
-    support: string[];
     token: string;
     pteroToken: string;
     pteroHost: string;

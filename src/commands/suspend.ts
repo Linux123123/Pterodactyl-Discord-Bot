@@ -1,4 +1,3 @@
-import { JSPteroAPIError } from '@linux123123/jspteroapi';
 import { RunFunction } from '../interfaces/Command';
 
 export const run: RunFunction = async (client, message, args) => {
@@ -8,33 +7,20 @@ export const run: RunFunction = async (client, message, args) => {
         const res = await client.app.suspendServer(parseInt(args[0]));
         await message.delete();
         const msg = await message.channel.send(
-            client.embed({
-                title: res,
-                color: message.settings.embedColor,
-                timestamp: new Date(),
-            }),
+            client.embed(
+                {
+                    title: res,
+                },
+                message,
+            ),
         );
         msg.delete({ timeout: 3000 });
     } catch (e) {
-        if (e.ERRORS) {
-            const err: JSPteroAPIError = e;
-            client.logger(JSON.stringify(err), 'error');
-            message.reply(
-                `There was an error: ${err.ERRORS.join(' ').replaceAll(
-                    'resource',
-                    'server',
-                )}`,
-            );
-            return;
-        }
-        client.logger(JSON.stringify(e), 'error');
-        message.reply('There was an error while trying to send the message!');
-        return;
+        return message.reply(client.functions.handleCmdError(client, e));
     }
 };
-export const name = 'suspend';
-
 export const conf = {
+    name: 'suspend',
     aliases: [''],
     permLevel: 'Administrator',
 };

@@ -1,45 +1,33 @@
-import Enmap from 'enmap';
 import fs from 'fs';
 import reader from 'readline-sync';
-import { defaultSettings } from './modules/functions';
+import { config } from './config/config';
 
-let baseConfig = fs.readFileSync(`${__dirname}/../config.js.example`, 'utf8');
+let baseConfig = fs.readFileSync(`${__dirname}/config/config.js`, 'utf8');
+let baseSrcConfig = fs.readFileSync(
+    `${__dirname}/../src/config/config.ts`,
+    'utf8',
+);
 
-const settings = new Enmap({
-    name: 'settings',
-    cloneLevel: 'deep',
-    ensureProps: true,
-});
-
-(async function () {
-    fs.mkdir(`${__dirname}/config`, { recursive: true }, (e) => console.log(e));
-    if (fs.existsSync(`${__dirname}/config/config.js`)) {
-        process.exit(0);
-    }
-    console.log('Setting Up Configuration...');
-    await settings.defer;
-
-    console.log(
-        'First Start! Inserting default guild settings in the database...',
-    );
-    settings.set('default', defaultSettings);
-
+if (config.token === 'TOKEN') {
     console.log('Enter your discord API token: ');
-    const TOKEN = reader.question('');
-    console.log('Enter your Pterodactyl API token: ');
-    const PTERO_TOKEN = reader.question('');
-    console.log(
-        'Enter your Pterodactyl HOST address (https://panel.example.com): ',
-    );
-    const PTERO_HOST = reader.question('');
-
+    const TOKEN = reader.question();
     baseConfig = baseConfig.replace('TOKEN', `${TOKEN}`);
-    baseConfig = baseConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
+    baseSrcConfig = baseSrcConfig.replace('TOKEN', `${TOKEN}`);
+}
+if (config.pteroHost === 'PTERO_HOST') {
+    console.log('Enter your pterodactyl API token: ');
+    const PTERO_HOST = reader.question();
     baseConfig = baseConfig.replace('PTERO_HOST', `${PTERO_HOST}`);
+    baseSrcConfig = baseSrcConfig.replace('PTERO_HOST', `${PTERO_HOST}`);
+}
+if (config.pteroToken === 'PTERO_TOKEN') {
+    console.log(
+        'Enter your pterodactyl gost url (https://panel.example.com): ',
+    );
+    const PTERO_TOKEN = reader.question();
+    baseConfig = baseConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
+    baseSrcConfig = baseSrcConfig.replace('PTERO_TOKEN', `${PTERO_TOKEN}`);
+}
 
-    fs.writeFileSync(`${__dirname}/config/config.js`, baseConfig);
-    console.log('REMEMBER TO NEVER SHARE YOUR TOKEN WITH ANYONE!');
-    console.log('Configuration has been written, enjoy!');
-    await settings.close();
-    process.exit(0);
-})();
+fs.writeFileSync(`${__dirname}/config/config.js`, baseConfig);
+fs.writeFileSync(`${__dirname}/../src/config/config.ts`, baseSrcConfig);

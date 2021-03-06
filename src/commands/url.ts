@@ -2,17 +2,17 @@ import { RunFunction } from '../interfaces/Command';
 
 export const run: RunFunction = async (client, message) => {
     message.channel.send(
-        client.embed({
-            title: client.config.pteroHost,
-            url: client.config.pteroHost,
-            color: message.settings.embedColor,
-            timestamp: new Date(),
-        }),
+        client.embed(
+            {
+                title: client.config.pteroHost,
+                url: client.config.pteroHost,
+            },
+            message,
+        ),
     );
 };
-export const name = 'url';
-
 export const conf = {
+    name: 'url',
     aliases: [''],
     permLevel: 'User',
 };

@@ -1,4 +1,4 @@
-import config from './config/config';
-import Bot from './client/client';
+import { config } from './config/config';
+import { Bot } from './classes/Client';
 
-new Bot().start(config);
+new Bot(config).start();

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { RunFunction } from '../interfaces/Command';
-import GuildSettings from '../interfaces/GuildSettings';
+import { GuildSettings } from '../interfaces/GuildSettings';
 
 export const run: RunFunction = async (
     client,
@@ -89,9 +89,8 @@ export const run: RunFunction = async (
         );
     }
 };
-export const name = 'set';
-
 export const conf = {
+    name: 'set',
     aliases: ['setting', 'settings', 'conf'],
     permLevel: 'Administrator',
 };
