@@ -63,7 +63,9 @@ export const run: RunFunction = async (client, message) => {
                 );
             page--;
             embed.setTitle(users[page - 1].attributes.username);
-            embed.description = `${users[page].attributes.first_name} ${users[page].attributes.last_name}`;
+            embed.description = `${users[page - 1].attributes.first_name} ${
+                users[page].attributes.last_name
+            }`;
             embed.fields = makeFields(page - 1, users) as EmbedField[];
             embed.setFooter(`Page ${page} of ${users.length}`);
             msg.edit(embed);
@@ -78,7 +80,9 @@ export const run: RunFunction = async (client, message) => {
                 );
             page++;
             embed.setTitle(users[page - 1].attributes.username);
-            embed.description = `${users[page].attributes.first_name} ${users[page].attributes.last_name}`;
+            embed.description = `${users[page - 1].attributes.first_name} ${
+                users[page].attributes.last_name
+            }`;
             embed.fields = makeFields(page - 1, users) as EmbedField[];
             embed.setFooter(`Page ${page} of ${users.length}`);
             msg.edit(embed);

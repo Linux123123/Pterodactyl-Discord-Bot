@@ -9,7 +9,7 @@
         "build": "rimraf dist/* && tsc",
         "lint": "eslint \"src/**\"",
         "postinstall": "npm run build && node dist/setup.js",
-        "pterodactyl": "git pull && npm i --production && npm start"
+        "pterodactyl": "git pull && yarn install --production && yarn start"
     },
     "engines": {
         "node": ">=14"
