@@ -8,8 +8,8 @@
     "name": "discord pterodactyl bot",
     "author": "linas.alexx@gmail.com",
     "description": "A Pterodactyl Discord Bot egg.",
-    "image": "linux123123/images:alpine_nodejs_latest",
-    "images": ["linux123123/images:alpine_nodejs_latest"],
+    "image": "linux123123/pterodactyl-images:alpine-nodejs-lts",
+    "images": ["linux123123/pterodactyl-images:alpine-nodejs-lts"],
     "startup": "npm run pterodactyl",
     "config": {
         "files": "{}",
