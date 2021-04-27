@@ -46,7 +46,7 @@ export const run: RunFunction = async (client, message: Message) => {
     if (!cmd) return;
 
     // Check permissions
-    if (level < (client.levelCache[cmd.conf.permLevel] || 10)) {
+    if (level < (client.levelCache[cmd.conf.permLevel])) {
         return message.channel.send(
             client.functions.permissionError(client, message, cmd),
         );
