@@ -4,7 +4,7 @@
         "version": "PTDL_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/Linux123123\/Pterodactyl-Discord-Bot\/master\/egg-discord-pterodactyl-bot.json"
     },
-    "exported_at": "2021-05-15T11:19:57+03:00",
+    "exported_at": "2021-05-15T11:25:17+03:00",
     "name": "Discord Pterodactyl Bot",
     "author": "linas.alexx@gmail.com",
     "description": "A Pterodactyl Discord Bot egg.",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# Pterodactyl Discord Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\nls\r\n\r\napt-get update && apt-get -y install git\r\n\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\necho \"Pulling the Pterodactyl Discord Bot from github\"\r\n\r\ngit clone --single-branch --branch master https:\/\/github.com\/Linux123123\/Pterodactyl-Discord-Bot.git .\r\n\r\nls\r\n\r\necho \"Installing dependencies!\"\r\n\r\nyarn install --production\r\n\r\necho \"Compiling\/Building\"\r\n\r\nyarn build\r\n\r\necho \"Install complete. If you watched this. Congrats.\"",
+            "script": "#!\/bin\/bash\r\n# Pterodactyl Discord Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\napt-get update && apt-get -y install git\r\n\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\necho \"Pulling the Pterodactyl Discord Bot from github\"\r\n\r\ngit clone --single-branch --branch master https:\/\/github.com\/Linux123123\/Pterodactyl-Discord-Bot.git .\r\n\r\necho \"Installing dependencies!\"\r\n\r\nyarn install --production\r\n\r\necho \"Compiling\/Building\"\r\n\r\nyarn build\r\n\r\necho \"Install complete. If you watched this. Congrats.\"",
             "container": "node:lts-buster",
             "entrypoint": "bash"
         }
