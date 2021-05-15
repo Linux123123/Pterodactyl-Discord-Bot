@@ -6,7 +6,7 @@ export function handleExceptions(client: Bot): void {
         if (err.stack) {
             errorMsg = err.stack.replace(
                 new RegExp(`${__dirname}/`, 'g'),
-                './',
+                './'
             );
         }
         client.logger.error(`Uncaught Exception: ${errorMsg}`);

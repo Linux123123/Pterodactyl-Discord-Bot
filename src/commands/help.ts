@@ -7,7 +7,7 @@ export const run: RunFunction = async (client, message, args) => {
         // Filter all commands by which are available for the user's level, using the <Collection>.filter() method.
         const myCommands = client.commands.filter(
             (cmd) =>
-                client.levelCache[cmd.conf.permLevel] <= message.author.level,
+                client.levelCache[cmd.conf.permLevel] <= message.author.level
         );
 
         let currentCategory = '';
@@ -21,7 +21,7 @@ export const run: RunFunction = async (client, message, args) => {
                     : p.conf.name > c.conf.name &&
                       p.help.category === c.help.category
                     ? 1
-                    : -1,
+                    : -1
             );
         sorted.forEach((c) => {
             const cat = c.help.category;
@@ -42,8 +42,8 @@ export const run: RunFunction = async (client, message, args) => {
                     description: `**Use ${message.settings.prefix}help <commandname> for details**`,
                     fields: fields,
                 },
-                message,
-            ),
+                message
+            )
         );
     } else {
         // Show individual command's help.
@@ -76,8 +76,8 @@ export const run: RunFunction = async (client, message, args) => {
                             },
                         ],
                     },
-                    message,
-                ),
+                    message
+                )
             );
         }
     }

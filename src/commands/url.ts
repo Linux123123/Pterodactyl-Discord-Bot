@@ -7,8 +7,8 @@ export const run: RunFunction = async (client, message) => {
                 title: client.config.pteroHost,
                 url: client.config.pteroHost,
             },
-            message,
-        ),
+            message
+        )
     );
 };
 export const conf = {

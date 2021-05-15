@@ -4,6 +4,12 @@ import { Bot } from '../classes/Client';
 export interface RunFunction {
     (client: Bot, message: Message, args: string[]): Promise<unknown>;
 }
+
+export interface SetupFunction {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (client: Bot, ...params: any[]): Promise<unknown>;
+}
+
 export interface confObject {
     name: string;
     aliases: string[];
@@ -16,6 +22,7 @@ export interface helpObject {
 }
 
 export interface Command {
+    setup?: SetupFunction;
     run: RunFunction;
     conf: confObject;
     help: helpObject;

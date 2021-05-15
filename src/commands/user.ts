@@ -38,8 +38,8 @@ export const run: RunFunction = async (client, message, args) => {
                         },
                     ],
                 },
-                message,
-            ),
+                message
+            )
         );
     } catch (e) {
         return message.reply(client.functions.handleCmdError(client, e));

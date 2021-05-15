@@ -56,45 +56,6 @@ export class Functions {
             console.error(e);
         }
     }
-    public async unloadCommand(
-        client: Bot,
-        commandName: string,
-    ): Promise<boolean | string> {
-        try {
-            client.logger.log(`Unloading Command: ${commandName}`);
-            let command;
-            if (client.commands.has(commandName)) {
-                command = client.commands.get(commandName);
-            } else if (client.aliases.has(commandName)) {
-                command = client.commands.get(
-                    `${client.aliases.get(commandName)}`,
-                );
-            }
-            if (!command)
-                return `The command \`${commandName}\` doesn"t seem to exist, nor is it an alias. Try again!`;
-            const mod =
-                require.cache[
-                    require.resolve(`../commands/${command.conf.name}`)
-                ];
-            if (!mod) return `Can't find the module`;
-            delete require.cache[
-                require.resolve(`../commands/${command.conf.name}.js`)
-            ];
-            for (let i = 0; i < (mod.parent?.children.length || 0); i++) {
-                if (mod.parent?.children[i] === mod) {
-                    mod.parent?.children.splice(i, 1);
-                    break;
-                }
-            }
-            return false;
-        } catch (e) {
-            client.logger.error(
-                `Unable to unload command ${commandName}: ${e}`,
-            );
-            console.error(e);
-            return e;
-        }
-    }
     /* Loading events */
     public async loadEvent(client: Bot, eventName: string): Promise<void> {
         try {
@@ -110,7 +71,7 @@ export class Functions {
     public permissionError(
         client: Bot,
         message: Message,
-        cmd: Command,
+        cmd: Command
     ): MessageEmbed {
         return client.embed(
             {
@@ -128,7 +89,7 @@ export class Functions {
                     },
                 ],
             },
-            message,
+            message
         );
     }
     /*
@@ -139,7 +100,7 @@ export class Functions {
     public async awaitReply(
         msg: Message,
         question: string,
-        limit = 60000,
+        limit = 60000
     ): Promise<string> {
         const filter = (m: Message) => m.author.id === msg.author.id;
         await msg.channel.send(question);

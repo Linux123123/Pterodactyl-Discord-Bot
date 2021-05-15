@@ -5,7 +5,7 @@ import { GuildSettings } from '../interfaces/GuildSettings';
 export const run: RunFunction = async (
     client,
     message,
-    [action, key, ...value],
+    [action, key, ...value]
 ) => {
     // Retrieve current guild settings (merged) and overrides only.
     const settings = message.settings;
@@ -47,12 +47,12 @@ export const run: RunFunction = async (
             return message.reply('This key does not exist in the settings');
         if (!overrides[key])
             return message.reply(
-                'This key does not have an override and is already using defaults.',
+                'This key does not have an override and is already using defaults.'
             );
 
         const response = await client.functions.awaitReply(
             message,
-            `Are you sure you want to reset ${key} to the default value?`,
+            `Are you sure you want to reset ${key} to the default value?`
         );
 
         // If they respond with y or yes, continue.
@@ -64,7 +64,7 @@ export const run: RunFunction = async (
         // If they respond with n or no, we inform them that the action has been cancelled.
         else if (['n', 'no', 'cancel'].includes(response)) {
             message.reply(
-                `Your setting for \`${key}\` remains at \`${settings[key]}\``,
+                `Your setting for \`${key}\` remains at \`${settings[key]}\``
             );
         }
     } else if (action === 'get') {
@@ -75,7 +75,7 @@ export const run: RunFunction = async (
             ? '\nThis is the default global default value.'
             : '';
         message.reply(
-            `The value of ${key} is currently ${settings[key]}${isDefault}`,
+            `The value of ${key} is currently ${settings[key]}${isDefault}`
         );
     } else {
         // Otherwise, the default action is to return the whole configuration;
@@ -85,7 +85,7 @@ export const run: RunFunction = async (
         });
         await message.channel.send(
             `= Current Guild Settings =\n${array.join('\n')}`,
-            { code: 'asciidoc' },
+            { code: 'asciidoc' }
         );
     }
 };

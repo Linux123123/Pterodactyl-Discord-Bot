@@ -11,8 +11,8 @@ export const run: RunFunction = async (client, message, args) => {
                 {
                     title: res,
                 },
-                message,
-            ),
+                message
+            )
         );
         msg.delete({ timeout: 3000 });
     } catch (e) {

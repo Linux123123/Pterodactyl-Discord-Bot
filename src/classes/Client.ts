@@ -10,6 +10,8 @@ import { Functions } from '../modules/Functions';
 import { Command } from '../interfaces/Command';
 import { Message } from './Message';
 import { Application } from '@linux123123/jspteroapi';
+import { ContinueCMD } from '../interfaces/ContinueCMD';
+import { generate } from 'shortid';
 
 const readAsyncDir = promisify(readdir);
 
@@ -19,6 +21,7 @@ export class Bot extends Client {
     }
     public commands: enmap<string, Command> = new enmap();
     public aliases: enmap<string, string> = new enmap();
+    public continueCmd: enmap<string, ContinueCMD> = new enmap('continueCmd');
     public settings: enmap<string, GuildSettings> = new enmap('settings');
     public levelCache: { [key: string]: number } = {};
     public functions = new Functions();
@@ -29,7 +32,7 @@ export class Bot extends Client {
         this.login(this.config.token);
         this.app = new Application(
             this.config.pteroHost,
-            this.config.pteroToken,
+            this.config.pteroToken
         );
         const cmdFiles = await readAsyncDir(`${__dirname}/../commands`);
         const eventFiles = await readAsyncDir(`${__dirname}/../events`);
@@ -47,12 +50,15 @@ export class Bot extends Client {
     public embed(
         data: MessageEmbedOptions,
         message?: Message,
-        embedColor = '#0000FF',
+        embedColor = '#0000FF'
     ): MessageEmbed {
         return new MessageEmbed({
             ...data,
             color: message ? message.settings.embedColor : embedColor,
             timestamp: new Date(),
         });
+    }
+    public genShortID(): string {
+        return generate();
     }
 }

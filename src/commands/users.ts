@@ -42,7 +42,7 @@ export const run: RunFunction = async (client, message) => {
                 fields: makeFields(0, users),
                 footer: { text: `Page 1 of ${users.length}` },
             },
-            message,
+            message
         );
         const msg = await message.channel.send(embed);
         await msg.react('⬅');
@@ -59,7 +59,7 @@ export const run: RunFunction = async (client, message) => {
         backwards.on('collect', (r, u) => {
             if (page === 1)
                 return r.users.remove(
-                    r.users.cache.find((u) => u === message.author),
+                    r.users.cache.find((u) => u === message.author)
                 );
             page--;
             embed.setTitle(users[page - 1].attributes.username);
@@ -76,7 +76,7 @@ export const run: RunFunction = async (client, message) => {
         forwards.on('collect', (r, u) => {
             if (page === users.length)
                 return r.users.remove(
-                    r.users.cache.find((u) => u === message.author),
+                    r.users.cache.find((u) => u === message.author)
                 );
             page++;
             embed.setTitle(users[page - 1].attributes.username);

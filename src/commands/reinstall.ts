@@ -11,7 +11,7 @@ export const run: RunFunction = async (client, message, args) => {
                 title: res,
                 color: message.settings.embedColor,
                 timestamp: new Date(),
-            }),
+            })
         );
         msg.delete({ timeout: 3000 });
     } catch (e) {

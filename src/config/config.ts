@@ -1,15 +1,18 @@
 import { Message } from '../classes/Message';
 import { Config } from '../interfaces/Config';
+import { config as dotenv } from 'dotenv';
+
+dotenv();
 
 export const config: Config = {
-    // Bot Creator, level 10 by default. Should never be anything else than then Linux123123 ID
-    ownerID: '244024524289343489',
     // Your Bot's Token. Available on https://discord.com/developers/applications/me
-    token: 'TOKEN',
-    // Pterodactyl api token
-    pteroToken: 'PTERO_TOKEN',
+    token: process.env.TOKEN ? process.env.TOKEN : 'NOT_PROVIDED',
+    // Pterodactyl api token 
+    pteroToken: process.env.PTERO_TOKEN
+        ? process.env.PTERO_TOKEN
+        : 'NOT_PROVIDED',
     // Pterodactyl HOST address
-    pteroHost: 'PTERO_HOST',
+    pteroHost: process.env.PTERO_HOST ? process.env.PTERO_HOST : 'NOT_PROVIDED',
     // PERMISSION LEVEL DEFINITIONS.
     permLevels: [
         // This is the lowest permisison level, this is for non-roled users.
@@ -34,7 +37,7 @@ export const config: Config = {
                     const modRole = message.guild?.roles.cache.find(
                         (r) =>
                             r.name.toLowerCase() ===
-                            message.settings.modRole.toLowerCase(),
+                            message.settings.modRole.toLowerCase()
                     );
                     if (modRole && message.member?.roles.cache.has(modRole.id))
                         return true;
@@ -52,7 +55,7 @@ export const config: Config = {
                     const adminRole = message.guild?.roles.cache.find(
                         (r) =>
                             r.name.toLowerCase() ===
-                            message.settings.adminRole.toLowerCase(),
+                            message.settings.adminRole.toLowerCase()
                     );
                     if (!adminRole) return false;
                     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -79,8 +82,8 @@ export const config: Config = {
             level: 10,
             name: 'Bot Creator',
             // Another simple check, compares the message author id to the one stored in the config file.
-            check: (message) =>
-                message.client.config.ownerID === message.author.id,
+            // Do not change !
+            check: (message) => '244024524289343489' === message.author.id,
         },
     ],
 };

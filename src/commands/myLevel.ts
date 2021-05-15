@@ -2,7 +2,7 @@ import { RunFunction } from '../interfaces/Command';
 
 export const run: RunFunction = async (client, message) => {
     message.reply(
-        `Your permission level is: ${message.author.level} - ${message.author.levelName}`,
+        `Your permission level is: ${message.author.level} - ${message.author.levelName}`
     );
 };
 export const conf = {

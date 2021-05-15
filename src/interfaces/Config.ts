@@ -11,7 +11,6 @@ export interface permObject {
 }
 
 export interface Config {
-    ownerID: string;
     token: string;
     pteroToken: string;
     pteroHost: string;

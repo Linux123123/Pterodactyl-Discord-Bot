@@ -6,7 +6,7 @@ export const run: RunFunction = async (client, message: Message) => {
 
     const settings = (message.settings = client.functions.getSettings(
         client,
-        message.guild,
+        message.guild
     )); // Grab the settings for this server
 
     // Checks if the bot was mentioned, with no message after it, returns the prefix.
@@ -33,7 +33,7 @@ export const run: RunFunction = async (client, message: Message) => {
     // Get the user or member's permission level from the elevation
     const level = (message.author.level = client.functions.permlevel(
         client,
-        message,
+        message
     ));
     const levelName = (message.author.levelName =
         client.config.permLevels.find((l) => l.level === level)?.name ||
@@ -48,12 +48,12 @@ export const run: RunFunction = async (client, message: Message) => {
     // Check permissions
     if (level < (client.levelCache[cmd.conf.permLevel] || 10)) {
         return message.channel.send(
-            client.functions.permissionError(client, message, cmd),
+            client.functions.permissionError(client, message, cmd)
         );
     }
     // If the command exists, **AND** the user has permission, run it.
     client.logger.cmd(
-        `${levelName} ${message.author.username} (${message.author.id}) ran command ${cmd.conf.name}`,
+        `${levelName} ${message.author.username} (${message.author.id}) ran command ${cmd.conf.name}`
     );
     cmd.run(client, message, args);
 };

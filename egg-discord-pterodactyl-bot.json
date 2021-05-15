@@ -2,14 +2,17 @@
     "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
     "meta": {
         "version": "PTDL_v1",
-        "update_url": "https://raw.githubusercontent.com/Linux123123/Pterodactyl-Discord-Bot/master/egg-discord-pterodactyl-bot.json"
+        "update_url": "https:\/\/raw.githubusercontent.com\/Linux123123\/Pterodactyl-Discord-Bot\/master\/egg-discord-pterodactyl-bot.json"
     },
-    "exported_at": "2021-03-06T18:11:19+02:00",
-    "name": "discord pterodactyl bot",
+    "exported_at": "2021-03-20T22:29:37+02:00",
+    "name": "Discord Pterodactyl Bot",
     "author": "linas.alexx@gmail.com",
     "description": "A Pterodactyl Discord Bot egg.",
-    "image": "linux123123/images:alpine_nodejs_latest",
-    "images": ["linux123123/images:alpine_nodejs_latest"],
+    "features": null,
+    "images": [
+        "linux123123\/pterodactyl-images:buster-nodejs-lts"
+    ],
+    "file_denylist": [],
     "startup": "npm run pterodactyl",
     "config": {
         "files": "{}",
@@ -19,10 +22,38 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!/bin/ash\r\n# Pterodactyl Discord Bot Installation Script\r\n#\r\n# Server Files: /mnt/server\r\n\r\napk add --no-cache --update git\r\n\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\n\r\necho \"pulling the Pterodactyl Discord Bot from github\"\r\n\r\ngit clone --single-branch --branch master https://github.com/Linux123123/Pterodactyl-Discord-Bot.git .\r\n\r\necho \"Install complete. If you watched this. Congrats.\"",
-            "container": "alpine:latest",
-            "entrypoint": "ash"
+            "script": "#!\/bin\/bash\r\n# Pterodactyl Discord Bot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\napt-get update && apt-get -y install git\r\n\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\necho \"Pulling the Pterodactyl Discord Bot from github\"\r\n\r\ngit clone --single-branch --branch master https:\/\/github.com\/Linux123123\/Pterodactyl-Discord-Bot.git .\r\n\r\necho \"Installing dependencies!\"\r\n\r\nnpm i --production\r\n\r\necho \"Compiling\/Building\"\r\n\r\nnpm run build\r\n\r\necho \"Install complete. If you watched this. Congrats.\"",
+            "container": "node:lts-buster-slim",
+            "entrypoint": "bash"
         }
     },
-    "variables": []
+    "variables": [
+        {
+            "name": "Discord Token",
+            "description": "Your discord api token. Available on https:\/\/discord.com\/developers\/applications\/me",
+            "env_variable": "TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:59|max:59"
+        },
+        {
+            "name": "Pterodactyl Token",
+            "description": "Your pterodactyl API token. It can be created in the Application API section of admin settings. Check all the boxes for both read and write.",
+            "env_variable": "PTERO_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|min:48|max:48"
+        },
+        {
+            "name": "Pterodactyl URL",
+            "description": "Your pterodactyl host domain\/IP. Must include http\/https. Example: \"https:\/\/panel.linux123123.cf\"",
+            "env_variable": "PTERO_HOST",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|active_url"
+        }
+    ]
 }

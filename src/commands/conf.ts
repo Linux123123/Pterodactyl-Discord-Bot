@@ -4,7 +4,7 @@ import { defaultSettings } from '../modules/Functions';
 export const run: RunFunction = async (
     client,
     message,
-    [action, key, ...value],
+    [action, key, ...value]
 ) => {
     if (action === 'edit') {
         if (!key) return message.reply('Please specify a key to edit');
@@ -24,15 +24,15 @@ export const run: RunFunction = async (
         if (!defaultSettings[key])
             return message.reply('This key does not exist in the settings');
         message.reply(
-            `The value of ${key} is currently ${defaultSettings[key]}`,
+            `The value of ${key} is currently ${defaultSettings[key]}`
         );
     }
     // Display all default settings.
     else {
         await message.channel.send(
             `***__Bot Default Settings__***\n\`\`\`json\n${inspect(
-                defaultSettings,
-            )}\n\`\`\``,
+                defaultSettings
+            )}\n\`\`\``
         );
     }
 };

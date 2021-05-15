@@ -15,7 +15,7 @@ export const run: RunFunction = async (client, message) => {
                 },
             ],
         },
-        message,
+        message
     );
     message.channel.send(embed);
 };
