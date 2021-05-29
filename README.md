@@ -11,12 +11,12 @@
 
 You can run the bot in the panel. You just need to import the [egg provided](https://github.com/Linux123123/Pterodactyl-Discord-Bot/raw/master/egg-discord-pterodactyl-bot.json) and create a server with it.
 
-# Requirements
+# Manual installation
+
+<h5>Requirements</h5>
 
 1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**<br>
 2. Node.js v14.0.0 or newer
-
-# To install
 
 <h5>Install from the command line:</h5>
 
