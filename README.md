@@ -24,6 +24,7 @@ You will be automatically asked for API keys and other information needed to run
 ```bash
 git clone https://github.com/Linux123123/Pterodactyl-Discord-Bot.git
 npm install --production
+npm build
 npm start
 ```
 
