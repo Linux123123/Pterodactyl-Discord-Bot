@@ -7,15 +7,14 @@
 
 <h3>A simple pterodactyl discord bot using my own API library, that has a permission system.</h3>
 
+# Pterodactyl panel
+
+You can run the bot in the panel. You just need to import the [egg provided](https://github.com/Linux123123/Pterodactyl-Discord-Bot/raw/master/egg-discord-pterodactyl-bot.json) and create a server with it.
+
 # Requirements
 
 1. Discord Bot Token **[Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot)**<br>
 2. Node.js v14.0.0 or newer
-
-# Pterodactyl panel
-
-You can run the bot in the panel. You just need to import the [egg provided](https://github.com/Linux123123/Pterodactyl-Discord-Bot/raw/master/egg-discord-pterodactyl-bot.json) and create a server with it.
-You will be automatically asked for API keys and other information needed to run the bot.
 
 # To install
 
