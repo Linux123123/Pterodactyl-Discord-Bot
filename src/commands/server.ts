@@ -4,12 +4,17 @@ export const run: RunFunction = async (client, message, args) => {
     if (!args[0])
         return message.reply('You need to provide the id of the server!');
     try {
-        const server = await client.app.getServerInfo(parseInt(args[0]), {
-            allocations: true,
-            user: true,
-            egg: true,
-            databases: true,
-        });
+        const clientServer = await client.client.getServerInfo(args[0]);
+        const server = await client.app.getServerInfo(
+            clientServer.internal_id,
+            {
+                allocations: true,
+                user: true,
+                egg: true,
+                databases: true,
+            }
+        );
+
         message.channel.send(
             client.embed(
                 {
@@ -18,13 +23,13 @@ export const run: RunFunction = async (client, message, args) => {
                     fields: [
                         {
                             name: 'OWNER',
-                            value:
-                                server.relationships?.user?.attributes.username,
+                            value: server.relationships?.user?.attributes
+                                .username,
                             inline: true,
                         },
                         {
                             name: 'Server ID',
-                            value: server.id,
+                            value: server.identifier,
                             inline: true,
                         },
                         {

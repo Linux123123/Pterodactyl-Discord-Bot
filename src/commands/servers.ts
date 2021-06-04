@@ -7,21 +7,21 @@ export const run: RunFunction = async (client, message) => {
         return [
             {
                 name: 'OWNER',
-                value:
-                    servers[page].attributes.relationships?.user?.attributes
-                        .username,
+                value: servers[page].attributes.relationships?.user?.attributes
+                    .username,
                 inline: true,
             },
             {
                 name: 'Server ID',
-                value: servers[page].attributes.id,
+                value:
+                    servers[page].attributes.external_id ??
+                    servers[page].attributes.identifier,
                 inline: true,
             },
             {
                 name: 'EGG',
-                value:
-                    servers[page].attributes.relationships?.egg?.attributes
-                        .name,
+                value: servers[page].attributes.relationships?.egg?.attributes
+                    .name,
                 inline: true,
             },
             {

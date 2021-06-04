@@ -9,7 +9,7 @@ import { GuildSettings } from '../interfaces/GuildSettings';
 import { Functions } from '../modules/Functions';
 import { Command } from '../interfaces/Command';
 import { Message } from './Message';
-import { Application } from '@linux123123/jspteroapi';
+import { Application, Client as ApiClient } from '@linux123123/jspteroapi';
 import { ContinueCMD } from '../interfaces/ContinueCMD';
 import { generate } from 'shortid';
 
@@ -27,12 +27,17 @@ export class Bot extends Client {
     public functions = new Functions();
     public logger = new Logger();
     public app!: Application;
+    public client!: ApiClient;
     public async start(): Promise<void> {
         handleExceptions(this);
         this.login(this.config.token);
         this.app = new Application(
             this.config.pteroHost,
             this.config.pteroToken
+        );
+        this.client = new ApiClient(
+            this.config.pteroHost,
+            this.config.pteroClientToken
         );
         const cmdFiles = await readAsyncDir(`${__dirname}/../commands`);
         const eventFiles = await readAsyncDir(`${__dirname}/../events`);

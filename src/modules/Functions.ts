@@ -118,8 +118,10 @@ export class Functions {
         console.error(e);
         if (e.ERRORS) {
             const err: JSPteroAPIError = e;
-            return `There was an error: ${err.ERRORS.join(' ')}`;
+            if (e.ERRORS[0])
+                return `There was an error: ${err.ERRORS.join(' ')}`;
+            return `There was an error: ${err.HTML_STATUS_TEXT}`;
         }
-        return 'There was an error while trying to send the message!';
+        return 'There was an error!';
     }
 }

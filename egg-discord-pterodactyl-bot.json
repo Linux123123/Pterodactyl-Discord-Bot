@@ -4,7 +4,7 @@
         "version": "PTDL_v1",
         "update_url": "https:\/\/raw.githubusercontent.com\/Linux123123\/Pterodactyl-Discord-Bot\/master\/egg-discord-pterodactyl-bot.json"
     },
-    "exported_at": "2021-05-15T11:25:17+03:00",
+    "exported_at": "2021-06-02T15:26:52+03:00",
     "name": "Discord Pterodactyl Bot",
     "author": "linas.alexx@gmail.com",
     "description": "A Pterodactyl Discord Bot egg.",
@@ -53,7 +53,16 @@
             "default_value": "",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|active_url"
+            "rules": "required|string|active_url|ipv4"
+        },
+        {
+            "name": "Pterodactyl Client Token",
+            "description": "Your pterodactyl client API token. It can be created in the admin account API section. It needs to be an admin account to have all the permissions to start and stop servers.",
+            "env_variable": "PTERO_CLIENT_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20"
         }
     ]
 }

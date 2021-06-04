@@ -13,6 +13,7 @@ export interface permObject {
 export interface Config {
     token: string;
     pteroToken: string;
+    pteroClientToken: string;
     pteroHost: string;
     permLevels: permObject[];
 }

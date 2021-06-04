@@ -7,10 +7,10 @@ dotenv();
 export const config: Config = {
     // Your Bot's Token. Available on https://discord.com/developers/applications/me
     token: process.env.TOKEN ? process.env.TOKEN : 'NOT_PROVIDED',
-    // Pterodactyl api token 
-    pteroToken: process.env.PTERO_TOKEN
-        ? process.env.PTERO_TOKEN
-        : 'NOT_PROVIDED',
+    // Pterodactyl api token
+    pteroToken: process.env.PTERO_TOKEN ?? 'NOT_PROVIDED',
+    // Pterodactyl client api token
+    pteroClientToken: process.env.PTERO_CLIENT_TOKEN ?? 'NOT_PROVIDED',
     // Pterodactyl HOST address
     pteroHost: process.env.PTERO_HOST ? process.env.PTERO_HOST : 'NOT_PROVIDED',
     // PERMISSION LEVEL DEFINITIONS.
