@@ -22,9 +22,9 @@ You can run the bot in the panel. You just need to import the [egg provided](htt
 
 ```bash
 git clone https://github.com/Linux123123/Pterodactyl-Discord-Bot.git
-npm install --production
-npm build
-npm start
+yarn install --production
+yarn build
+yarn start
 ```
 
 # Permissions
