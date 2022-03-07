@@ -1,4 +1,4 @@
-# No longer maintaned. Update to date bot to buy https://pterodactylmarket.com/resource/366
+# No longer maintaned. Up to date bot to buy https://pterodactylmarket.com/resource/366
 
 # Pterodactyl-Discord-Bot
 
